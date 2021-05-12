@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.Random;
 
-public class MyQuickSorter<T extends  Comparable<T>> extends MySorter{
+public class MyQuickSorter<T extends  Comparable<T>> extends MySorter<T>{
 
     protected void mySort(){
         quickSort(0, items.length - 1);
@@ -16,7 +16,7 @@ public class MyQuickSorter<T extends  Comparable<T>> extends MySorter{
     private void quickSort(int left, int right) {
         if(right > left) {
             int pivotIndex = getIntInRange(left, right);
-            int newPivot = partition(0, items.length - 1, pivotIndex);
+            int newPivot = partition(items.length - 1, pivotIndex);
             quickSort(left, newPivot - 1);
             quickSort(newPivot + 1, right);
         }
@@ -34,14 +34,14 @@ public class MyQuickSorter<T extends  Comparable<T>> extends MySorter{
         this.items = items;
     }
 
-    private int partition(int left, int right, int pivotIndex){
-        T pivotValue = (T)items[pivotIndex];
+    private int partition( int right, int pivotIndex){
+        T pivotValue = items[pivotIndex];
 
         swap(pivotIndex, right);
 
-        int storeIndex = left;
-        for(int i = left; i < right; i++){
-            if(items[i].compareTo(pivotValue) < 0){
+        int storeIndex = 0;
+        for(int i = 0; i < right; i++){
+            if((items[i]).compareTo(pivotValue) < 0){
                 swap(i, storeIndex);
                 storeIndex++;
             }

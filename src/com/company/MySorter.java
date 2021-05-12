@@ -13,10 +13,6 @@ public abstract class MySorter<T extends  Comparable<T>> {
 
     protected abstract String getSortType();
 
-    public void printArr() {
-        printArr("");
-    }
-
     public void printArr(String message){
         StringBuilder sb = new StringBuilder(message.length()==0?"":message+": ");
         for(T elem:items){
@@ -24,12 +20,12 @@ public abstract class MySorter<T extends  Comparable<T>> {
             sb.append(",");
         }
         sb.deleteCharAt(sb.length()-1);
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 
     protected void swap(int left, int right){
         if(left != right){
-            T temp = (T) items[left];
+            T temp = items[left];
             items[left] = items[right];
             items[right] = temp;
         }
